@@ -102,8 +102,8 @@ $(
       let firstFeedItemHref;
 
       beforeEach(function(done) {
-        firstFeedItemHref = document.getElementsByClassName("entry-link")[0]
-          .href;
+        firstFeedItemHref =
+          document.getElementsByClassName("entry-link")[0].href || "";
         loadFeed(1, function() {
           done();
         });

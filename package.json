@@ -1,0 +1,22 @@
+{
+  "name": "frontend-nanodegree-feedreader-master",
+  "version": "1.0.0",
+  "description": "Sample feed reader to practice unit tests with Jasmine",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olebedyn/frontend-nanodegree-feedreader-tests.git"
+  },
+  "author": "Oleg Lebedyn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olebedyn/frontend-nanodegree-feedreader-tests/issues"
+  },
+  "homepage": "https://github.com/olebedyn/frontend-nanodegree-feedreader-tests#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}

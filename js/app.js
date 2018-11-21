@@ -7,23 +7,23 @@
  */
 
 // The names and URLs to all of the feeds we'd like available.
-const allFeeds = [
+var allFeeds = [
   {
-    name: 'Udacity Blog',
-    url: 'http://blog.udacity.com/feed',
+    name: "Udacity Blog",
+    url: "http://blog.udacity.com/feed"
   },
   {
-    name: 'CSS Tricks',
-    url: 'http://feeds.feedburner.com/CssTricks',
+    name: "CSS Tricks",
+    url: "http://feeds.feedburner.com/CssTricks"
   },
   {
-    name: 'HTML5 Rocks',
-    url: 'http://feeds.feedburner.com/html5rocks',
+    name: "HTML5 Rocks",
+    url: "http://feeds.feedburner.com/html5rocks"
   },
   {
-    name: 'Linear Digressions',
-    url: 'http://feeds.feedburner.com/udacity-linear-digressions',
-  },
+    name: "Linear Digressions",
+    url: "http://feeds.feedburner.com/udacity-linear-digressions"
+  }
 ];
 
 /* This function starts up our application. The Google Feed
@@ -44,25 +44,25 @@ function init() {
  * which will be called after everything has run successfully.
  */
 function loadFeed(id, cb) {
-  const feedUrl = allFeeds[id].url;
+  var feedUrl = allFeeds[id].url;
 
-  const feedName = allFeeds[id].name;
+  var feedName = allFeeds[id].name;
 
   $.ajax({
-    type: 'POST',
-    url: 'https://rsstojson.udacity.com/parseFeed',
-    data: JSON.stringify({url: feedUrl}),
-    contentType: 'application/json',
-    success: function(result, status) {
-      // const container = $('.feed');
+    type: "POST",
+    url: "https://rsstojson.udacity.com/parseFeed",
+    data: JSON.stringify({ url: feedUrl }),
+    contentType: "application/json",
+    success: function(result) {
+      var container = $(".feed");
 
-      const title = $('.header-title');
+      var title = $(".header-title");
 
-      const entries = result.feed.entries;
+      var entries = result.feed.entries;
 
-      // const entriesLen = entries.length;
+      var entriesLen = entries.length;
 
-      const entryTemplate = Handlebars.compile($('.tpl-entry').html());
+      var entryTemplate = Handlebars.compile($(".tpl-entry").html());
 
       title.html(feedName); // Set the header text
       container.empty(); // Empty out all previous entries
@@ -86,7 +86,7 @@ function loadFeed(id, cb) {
         cb();
       }
     },
-    dataType: 'json',
+    dataType: "json"
   });
 }
 
@@ -100,49 +100,47 @@ google.setOnLoadCallback(init);
  * until the DOM is ready.
  */
 $(
-    (function() {
-    // const container = $('.feed');
+  (function() {
+    // var container = $('.feed');
 
-      const feedList = $('.feed-list');
+    var feedList = $(".feed-list");
 
-      const feedItemTemplate = Handlebars.compile(
-          $('.tpl-feed-list-item').html()
-      );
+    var feedItemTemplate = Handlebars.compile($(".tpl-feed-list-item").html());
 
-      let feedId = 0;
+    var feedId = 0;
 
-      const menuIcon = $('.menu-icon-link');
+    var menuIcon = $(".menu-icon-link");
 
-      /* Loop through all of our feeds, assigning an id property to
+    /* Loop through all of our feeds, assigning an id property to
      * each of the feeds based upon its index within the array.
      * Then parse that feed against the feedItemTemplate (created
      * above using Handlebars) and append it to the list of all
      * available feeds within the menu.
      */
-      allFeeds.forEach(function(feed) {
-        feed.id = feedId;
-        feedList.append(feedItemTemplate(feed));
+    allFeeds.forEach(function(feed) {
+      feed.id = feedId;
+      feedList.append(feedItemTemplate(feed));
 
-        feedId++;
-      });
+      feedId++;
+    });
 
-      /* When a link in our feedList is clicked on, we want to hide
+    /* When a link in our feedList is clicked on, we want to hide
      * the menu, load the feed, and prevent the default action
      * (following the link) from occurring.
      */
-      feedList.on('click', 'a', function() {
-        const item = $(this);
+    feedList.on("click", "a", function() {
+      var item = $(this);
 
-        $('body').addClass('menu-hidden');
-        loadFeed(item.data('id'));
-        return false;
-      });
+      $("body").addClass("menu-hidden");
+      loadFeed(item.data("id"));
+      return false;
+    });
 
-      /* When the menu icon is clicked on, we need to toggle a class
+    /* When the menu icon is clicked on, we need to toggle a class
      * on the body to perform the hiding/showing of our menu.
      */
-      menuIcon.on('click', function() {
-        $('body').toggleClass('menu-hidden');
-      });
-    })()
+    menuIcon.on("click", function() {
+      $("body").toggleClass("menu-hidden");
+    });
+  })()
 );

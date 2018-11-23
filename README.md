@@ -11,7 +11,7 @@ Node >=v10.10.x, npm >=6.4.x and gulp-cli node package installed for local devel
 ## Project setup
 
 ```
-git checkout git@github.com:olebedyn/frontend-nanodegree-feedreader-tests.git
+git clone git@github.com:olebedyn/frontend-nanodegree-feedreader-tests.git
 npm install
 gulp dist
 ```
